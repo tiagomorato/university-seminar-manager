@@ -1,0 +1,75 @@
+{% extends "vorlagen/main.html" %}
+<title>{% block title %}Profil{% endblock %}</title>
+
+{% block content %}
+<h2>Ihr Profil</h2>
+<h3>Herzlich willkommen {{ session["vorname"] }} {{ session["nachname"] }}</h3>
+
+<p><strong>Ihre Angaben:</strong></p>
+
+<ul>
+    <li><strong>ID:</strong>
+        {% if session["login"] is defined %}
+        {{ session["login"] }}
+        {% endif %}
+    </li>
+    <li><strong>Vorname:</strong>
+        {% if session["vorname"] is defined %}
+        {{ session["vorname"] }}
+        {% endif %}
+    </li>
+    <li><strong>Nachname:</strong>
+        {% if session["nachname"] is defined %}
+        {{ session["nachname"] }}
+        {% endif %}
+    </li>
+    <li><strong>E-Mail:</strong>
+        {% if session["email"] is defined %}
+        {{ session["email"] }}
+        {% endif %}
+    </li>
+    {% if not session["is_dozent"] %}
+    <li><strong>Matrikelnummer:</strong>
+        {% if session["matrikelnummer"] is defined %}
+        {{ session["matrikelnummer"] }}
+        {% endif %}
+    </li>
+    <li><strong>Abschluss:</strong>
+        {% if session["abschluss"] is defined %}
+        {{ session["abschluss"] }}
+        {% endif %}
+    </li>
+    <li><strong>Studiengang:</strong>
+        {% if session["studiengang"] is defined %}
+        {{ session["studiengang"] }}
+        {% endif %}
+    </li>
+    <li><strong>Seminar:</strong>
+        {% if session["seminar"] is defined %}
+        {{ session["seminar"] }}
+        {% endif %}
+    </li>
+    <li><strong>Seminarthema:</strong>
+        {% if session["seminarthema"] %}
+        {{ session["seminarthema"] }}
+        {% else %} -
+        {% endif %}
+    </li>
+    {% endif %}
+</ul>
+{% if not session["is_dozent"] %}
+    {% if session["login"] is defined %}
+        <div>
+        <strong>Durchschnittliche Bewertung der Vorträge: </strong> {{ ave_bewertung }}
+        <br/>
+        <strong>Anzahl der Bewertungen:</strong> {{ anzahl_bewertung }}
+        </div>
+    {% endif %}
+{% endif %}
+<br>
+<a href="./profil_bearbeiten" class="btn btn-warning">Profil bearbeiten</a>
+{% if session["is_dozent"] %}
+<a href="{{ url_for('profil_alle_studierende') }}" class="btn btn-warning">Profil alle Studierende ansehen</a>
+{% endif %}
+
+{% endblock %}

@@ -1,0 +1,51 @@
+{% extends "vorlagen/main.html" %}
+<title>{% block title %}Registrierung{% endblock %}</title>
+
+{% block content %}
+    <h2>Registrierung</h2>
+    <form action="./registrierung_verarbeiten" method="post">
+        <div class="w-25 p-3 h-25 d-inline-block" style="width: 120px">
+            <label for="vorname">Vorname:</label><br>
+            <input type="text" name="vorname" id="vorname" placeholder="Vorname" required /><br />
+
+            <label for="nachname">Nachname:</label><br>
+            <input type="text" name="nachname" id="nachname" placeholder="Nachname" required /><br />
+
+            <label for="email">E-Mail:</label><br>
+            <input type="email" name="email" id="email" placeholder="E-Mail" required /><br>
+
+            <label for="password">Passwort:</label><br>
+            <input type="password" name="password" placeholder="Passwort" id="password" required><br><br>
+
+            <label for="matrikelnummer">Matrikelnummer:</label><br>
+            <input type="number" name="matrikelnummer" id="matrikelnummer" placeholder="Matrikelnummer" required /><br>
+
+            <label for="abschluss">Abschluss:</label><br>
+            <select id="abschluss" name="abschluss" required>
+                <option value="1">Bachelor of Arts (B.A.)</option>
+                <option value="2">Bachelor of Science (B.Sc.)</option>
+                <option value="3">Master of Arts (M.A.)</option>
+                <option value="4">Master of Science (M.Sc.)</option>
+            </select><br>
+
+            <label for="studiengang">Studiengang:</label><br>
+            <select id="studiengang" name="studiengang" required>
+                <option value="1">Wirtschaftsinformatik (WINF)</option>
+                <option value="2">Informationsmanagement und Informationstechnologie (IMIT)</option>
+                <option value="3">Angewandte Informatik (AI)</option>
+                <option value="4">Internationales Informationsmanagement (IIM)</option>
+                <option value="5">Internationale Kommunikation und Übersetzen (IKÜ)</option>
+            </select><br>
+
+            <label for="seminar">Belegtes Seminar:</label><br>
+            <select id="seminar" name="seminar" required>
+                <option value="1">Intelligente Informationssysteme (IIS)</option>
+                <option value="2">Wissensbasierte Systeme (WBS)</option>
+            </select><br>
+
+            <br>
+            <input class="btn btn-success" type="submit" />
+        </div>
+        <br>
+    </form>
+{% endblock %}

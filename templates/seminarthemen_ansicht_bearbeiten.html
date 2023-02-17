@@ -1,0 +1,140 @@
+{% extends "vorlagen/main.html" %}
+<title>{% block title %}Seminarthemen bearbeiten{% endblock %}</title>
+{% block content %}
+<h2>Seminarthemen-Ansicht</h2>
+<ul>
+    <li><strong>ID</strong>:
+        {{ ansicht_daten[0][0] }}
+    </li>
+    <li><strong>Titel</strong>:
+        {{ ansicht_daten[0][1] }}
+    </li>
+    <li><strong>Oberbegriff</strong>:
+        {{ ansicht_daten[0][2] }}
+    </li>
+    <li><strong>Beschreibung</strong>:
+        {{ ansicht_daten[0][3] }}
+    </li>
+    <li><strong>Semester</strong>:
+        {% if ansicht_daten[0][4] %}
+        {{ ansicht_daten[0][4] }}
+        {% else %}
+        -
+        {% endif %}
+    </li>
+    <li><strong>Status</strong>:
+        {{ ansicht_daten[0][5] }}
+    </li>
+    <li><strong>PDF</strong>:
+        {% if ansicht_daten[0][6] %}
+        {{ ansicht_daten[0][6] }}
+        {% else %}
+        -
+        {% endif %}
+    </li>
+    <li><strong>Dozent</strong>:
+        {{ ansicht_daten[0][7] }}
+    </li>
+    <li><strong>Student</strong>:
+        {% if ansicht_daten[0][8] %}
+        {{ ansicht_daten[0][8] }}
+        {% else %}
+        -
+        {% endif %}
+    </li>
+    <li><strong>Vortrag_bewerten</strong>:
+        {% if ansicht_daten[0][9] %}
+        {{ ansicht_daten[0][9] }}
+        {% else %}
+        -
+        {% endif %}
+    </li>
+    <li><strong>Ausarbeitung_bewerten</strong>:
+        {% if ansicht_daten[0][10] %}
+        {{ ansicht_daten[0][10] }}
+        {% else %}
+        -
+        {% endif %}
+    </li>
+    <li><strong>Student_benoten</strong>:
+        {% if ansicht_daten[0][11] %}
+        {{ ansicht_daten[0][11] }}
+        {% else %}
+        -
+        {% endif %}
+    </li>
+</ul>
+<hr>
+<h2>Seminarthemen-Ansicht bearbeiten</h2>
+<form action="{{ url_for('seminarthemen_ansicht_bearbeiten_verarbeiten') }}" method="POST"
+      enctype="multipart/form-data">
+    <div class="form-group form-outline w-25">
+        <input value="{{ ansicht_daten[0][0] }}" type="hidden" name="id" id="id" class="form-control">
+    </div>
+
+    <div class="form-group form-outline w-25">
+        <label for="new_titel">Neuer Titel</label>
+        <input value="{{ ansicht_daten[0][1] }}" type="text" name="new_titel" id="new_titel"
+               class="form-control" placeholder="Neuen Titel">
+    </div>
+
+    <div class="form-group form-outline w-25">
+        <label for="new_oberbegriff">Neuer Oberbegriff</label>
+        <input value="{{ ansicht_daten[0][2] }}" type="text" name="new_oberbegriff" id="new_oberbegriff"
+               class="form-control" placeholder="Neuen Oberbegriff">
+    </div>
+
+    <div class="form-group form-outline w-25">
+        <label for="new_beschreibung">Neue Beschreibung</label>
+        <input value="{{ ansicht_daten[0][3] }}" type="text" name="new_beschreibung" id="new_beschreibung"
+               class="form-control" placeholder="Neue Beschreibung">
+    </div>
+
+    <div class="form-group form-outline w-25">
+        <label for="new_semester">Neues Semester</label>
+        <input value="{{ ansicht_daten[0][4] }}" type="text" name="new_semester" id="new_semester"
+               class="form-control" placeholder="Neues Semester">
+    </div>
+
+    <div class="form-group form-outline w-50">
+        <label for="status">Status:</label><br>
+        <input {{'checked' if ansicht_daten[0][5]=='frei'}} type="radio" id="status" name="status"
+        value="frei">
+        <label for="status">frei</label>
+
+        <input {{'checked' if ansicht_daten[0][5]=='vergeben'}} type="radio" id="status" name="status"
+        value="vergeben">
+        <label for="status">vergeben</label>
+
+        <input {{'checked' if ansicht_daten[0][5]=='abgeschlossen'}} type="radio" id="status" name="status"
+        value="abgeschlossen">
+        <label for="status">abgeschlossen</label>
+    </div>
+
+    <div class="form-group form-outline w-50">
+        <label for="new_file">Neue PDF</label>
+        <input value="{{ ansicht_daten[0][9] }}" type="file" name="new_file" id="new_file"
+               class="form-control" placeholder="Neue PDF">
+    </div>
+
+    <div class="form-group form-outline w-25">
+        <label for="new_dozent">Neuer Dozent</label>
+        <select name="new_dozent" id="new_dozent">
+            {% for dozent in dozenten %}
+            <option value="{{ dozent[1] }}">{{ dozent[0] }}</option>
+            {% endfor %}
+        </select>
+    </div>
+
+    <div class="form-group form-outline w-25">
+        <label for="new_student">Neuer Student</label>
+        <input value="{% if ansicht_daten[0][8] %}{{ ansicht_daten[0][8] }}{% endif %}" type="text"
+               name="new_student" id="new_student"
+               class="form-control" placeholder="Neuer Student">
+    </div>
+
+    <button type="submit" class="btn btn-success">Submit</button>
+    <a href="{{ url_for('seminarthemen') }}" class="btn btn-danger">Cancel</a>
+    <br><br>
+</form>
+{% endblock %}

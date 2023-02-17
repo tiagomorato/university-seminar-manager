@@ -1,0 +1,48 @@
+{% extends "vorlagen/main.html" %}
+<title>{% block title %}Profil alle Studierende{% endblock %}</title>
+
+{% block content %}
+<h2>Profil aller Studierende</h2>
+
+{% for profil in profile %}
+<div>
+    <ul>
+        <li><strong>ID:</strong>
+            {{ profil[0] }}
+        </li>
+        <li><strong>Vorname:</strong>
+            {{ profil[1] }}
+        </li>
+        <li><strong>Nachname:</strong>
+            {{ profil[2] }}
+        </li>
+        <li><strong>E-Mail:</strong>
+            {{ profil[3] }}
+        </li>
+        <li><strong>Matrikelnummer:</strong>
+            {{ profil[4] }}
+        </li>
+        <li><strong>Abschluss:</strong>
+            {{ profil[5] }}
+        </li>
+        <li><strong>Studiengang:</strong>
+            {{ profil[6] }}
+        </li>
+        <li><strong>Seminar:</strong>
+            {{ profil[7] }}
+        </li>
+        <li><strong>Seminarthema:</strong>
+            {% if profil[8] %} {{ profil[8] }} {% else %} - {% endif %}
+        </li>
+        <li><strong>Bewertung der Ausarbeitung</strong>
+            {{ profil[9] }}
+        </li>
+        <li><strong>Benotung des Studenten:</strong>
+            {{ profil[10] }}
+        </li>
+    </ul>
+</div>
+
+<hr>
+{% endfor %}
+{% endblock %}

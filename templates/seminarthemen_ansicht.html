@@ -1,0 +1,69 @@
+{% extends "vorlagen/main.html" %}
+<title>{% block title %}Seminarthemen{% endblock %}</title>
+
+{% block content %}
+<h1>Seminarthemen-Ansicht</h1>
+
+    <ul>
+    <li><strong>ID</strong>:
+        {{ ansicht_daten[0][0] }}
+    </li>
+    <li><strong>Titel</strong>:
+        {{ ansicht_daten[0][1] }}
+    </li>
+    <li><strong>Oberbegriff</strong>:
+        {{ ansicht_daten[0][2] }}
+    </li>
+    <li><strong>Beschreibung</strong>:
+        {{ ansicht_daten[0][3] }}
+    </li>
+    <li><strong>Semester</strong>:
+        {% if ansicht_daten[0][4]%}
+        {{ ansicht_daten[0][4] }}
+        {% else %}
+        -
+        {% endif %}
+    </li>
+    <li><strong>Status</strong>:
+        {{ ansicht_daten[0][5] }}
+    </li>
+    <li><strong>PDF</strong>:
+        {% if ansicht_daten[0][6]%}
+        {{ ansicht_daten[0][6] }}
+        {% else %}
+        -
+        {% endif %}
+    </li>
+    <li><strong>Dozent</strong>:
+        {{ db_get_dozent_by_id(ansicht_daten[0][7]) }}
+    </li>
+    <li><strong>Student</strong>:
+        {% if ansicht_daten[0][8] %}
+        {{ ansicht_daten[0][8] }}
+        {% else %}
+        -
+        {% endif %}
+    </li>
+    <li><strong>Vortragbewerten</strong>:
+        {% if ansicht_daten[0][9] %}
+        {{ ansicht_daten[0][9] }}
+        {% else %}
+        -
+        {% endif %}
+    </li>
+    <li><strong>Ausarbeitungbewerten</strong>:
+        {% if ansicht_daten[0][10] %}
+        {{ ansicht_daten[0][10] }}
+        {% else %}
+        -
+        {% endif %}
+    </li>
+</ul>
+{% if session["is_dozent"] %}
+<a class="btn btn-warning" href="{{ url_for('seminarthemen_ansicht_bearbeiten', record_id = ansicht_daten[0][0]) }}" role="button">Thema bearbeiten</a>
+{% endif %}
+{% if ansicht_daten[0][5] == 'frei' %}
+<a class="btn btn-success" href="{{ url_for('seminarthemen_ansicht_belegen', record_id = ansicht_daten[0][0]) }}" role="button">Thema belegen</a>
+{% endif %}
+
+{% endblock %}

@@ -1,0 +1,42 @@
+{% extends "vorlagen/main.html" %}
+<title>{% block title %}Profil{% endblock %}</title>
+
+{% block content %}
+<h2>Profil von {{ student[1] }} {{ student[2] }}</h2>
+
+<ul>
+    <li><strong>ID:</strong>
+        {{ student[0] }}
+    </li>
+    <li><strong>Vorname:</strong>
+        {{ student[1] }}
+    </li>
+    <li><strong>Nachname:</strong>
+        {{ student[2] }}
+    </li>
+    <li><strong>E-Mail:</strong>
+        {{ student[3] }}
+    </li>
+    <li><strong>Matrikelnummer:</strong>
+        {{ student[4] }}
+    </li>
+    <li><strong>Abschluss:</strong>
+        {{ student[5] }}
+    </li>
+    <li><strong>Studiengang:</strong>
+        {{ student[6] }}
+    </li>
+    <li><strong>Seminar:</strong>
+        {{ student[7] }}
+    </li>
+    <li><strong>Seminarthema:</strong>
+        {% if student[8] %}
+        {{ student[8] }}
+        {% else %} -
+        {% endif %}
+    </li>
+</ul>
+
+<br>
+
+{% endblock %}

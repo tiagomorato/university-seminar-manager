@@ -1,0 +1,19 @@
+{% extends "vorlagen/main.html" %}
+<title>{% block title %}Login{% endblock %}</title>
+
+{% block content %}
+<h1>Einloggen</h1>
+
+<form action="./einloggen_verarbeiten" method="POST">
+    <div class="w-25 p-3 h-25 d-inline-block" style="width: 120px">
+        <label for="email_login">E-Mail:</label><br>
+        <input type="email" name="email_login" id="email_login" placeholder="E-Mail" required /><br /><br>
+
+        <label for="password_login">Passwort:</label><br>
+        <input type="password" name="password_login" id="password_login" placeholder="Passwort" required><br><br>
+
+        <button class="btn btn-primary" type="submit">Submit</button>
+    </div>
+</form>
+
+{% endblock %}

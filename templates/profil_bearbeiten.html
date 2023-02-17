@@ -1,0 +1,126 @@
+{% extends "vorlagen/main.html" %}
+<title>{% block title %}Profil bearbeiten{% endblock %}</title>
+{% block content %}
+<h2>Ihre aktuellen Angaben</h2>
+<ul>
+    <li><strong>ID:</strong>
+        {% if session["login"] is defined %}
+        {{ session["login"] }}
+        {% endif %}
+    </li>
+    <li><strong>Vorname:</strong>
+        {% if session["vorname"] is defined %}
+        {{ session["vorname"] }}
+        {% endif %}
+    </li>
+    <li><strong>Nachname:</strong>
+        {% if session["nachname"] is defined %}
+        {{ session["nachname"] }}
+        {% endif %}
+    </li>
+    <li><strong>E-Mail:</strong>
+        {% if session["email"] is defined %}
+        {{ session["email"] }}
+        {% endif %}
+    </li>
+    {% if not session["is_dozent"] %}
+    <li><strong>Matrikelnummer:</strong>
+        {% if session["matrikelnummer"] is defined %}
+        {{ session["matrikelnummer"] }}
+        {% endif %}
+    </li>
+    <li><strong>Abschluss:</strong>
+        {% if session["abschluss"] is defined %}
+            {{ session["abschluss"] }}
+        {% endif %}
+    </li>
+    <li><strong>Studiengang:</strong>
+        {% if session["studiengang"] is defined %}
+        {{ session["studiengang"] }}
+        {% endif %}
+    </li>
+    <li><strong>Seminar:</strong>
+        {% if session["seminar"] is defined %}
+            {{ session["seminar"] }}
+        {% endif %}
+    </li>
+    <li><strong>Seminarthema:</strong>
+        {% if session["seminarthema"] is defined %}
+            {{ session["seminarthema"] }}
+        {% endif %}
+    </li>
+    {% endif %}
+</ul>
+<hr>
+<h2>Neue Angaben</h2>
+<form action="./profil_bearbeiten_verarbeiten" method="POST">
+    <div class="form-group form-outline w-25">
+        <label for="neuer_vorname">Neuer Vorname</label>
+        <input value="{{ session["vorname"] }}" type="text" name="new_vorname" id="neuer_vorname"
+        class="form-control" placeholder="Neuen Vornamen eingeben">
+    </div>
+
+    <div class="form-group form-outline w-25">
+        <label for="neuer_nachname">Neuer Nachname</label>
+        <input value="{{ session["nachname"] }}" type="text" name="new_nachname" id="neuer_nachname"
+        class="form-control" placeholder="Neuen Nachname eingeben">
+    </div>
+    <div class="form-group form-outline w-25">
+        <label for="neue_email">Neue E-Mail</label>
+        <input value="{{ session["email"] }}" type="email" name="new_email" id="neue_email"
+        class="form-control" placeholder="Neue E-Mail">
+    </div>
+    <div class="form-group form-outline w-25">
+        <label for="neues_password">Neues Passwort</label>
+        <input value="{{ session["password"] }}" type="password" name="new_password" id="neues_password"
+        class="form-control" placeholder="Password">
+    </div>
+    {% if not session["is_dozent"] %}
+    <div class="form-group form-outline w-25">
+        <label for="neue_matrikelnummer">Neue Matrikelnummer</label>
+        <input value="{{ session["matrikelnummer"] }}" type="number" name="new_matrikelnummer" id="neue_matrikelnummer"
+        class="form-control" placeholder="Neue Matrikelnummer">
+    </div>
+    <div>
+        <label for="abschluss">Abschluss:</label><br>
+        <select id="abschluss" name="new_abschluss" required>
+            <option value="1" {{'selected' if abschluss_id==1}}>Bachelor of Arts (B.A.)</option>
+            <option value="2" {{'selected' if abschluss_id==2}}>Bachelor of Science (B.Sc.)</option>
+            <option value="3" {{'selected' if abschluss_id==3}}>Master of Arts (M.A.)</option>
+            <option value="4" {{'selected' if abschluss_id==4}}>Master of Science (M.Sc.)</option>
+        </select>
+    </div>
+    <br>
+    <div>
+        <label for="studiengang">Studiengang:</label><br>
+        <select id="studiengang" name="new_studiengang" required>
+            <option value="1" {{'selected' if studiengang_id==1}}>Wirtschaftsinformatik (WINF)</option>
+            <option value="2" {{'selected' if studiengang_id==2}}>Informationsmanagement und
+            Informationstechnologie (IMIT)</option>
+            <option value="3" {{'selected' if studiengang_id==3}}>Angewandte Informatik (AI)</option>
+            <option value="4" {{'selected' if studiengang_id==4}}>Internationales Informationsmanagement (IIM)</option>
+            <option value="5" {{'selected' if studiengang_id==5}}>Internationale Kommunikation und
+            Übersetzen (IKÜ)</option>
+        </select>
+    </div>
+    <br>
+    <div>
+        <label for="seminar">Belegtes Seminar:</label><br>
+        <select id="seminar" name="new_seminar" required>
+            <option value="1" {{'selected' if seminar_id==1}}>Intelligente Informationssysteme (IIS)</option>
+            <option value="2" {{'selected' if seminar_id==2}}>Wissensbasierte Systeme (WBS)</option>
+        </select>
+    </div>
+    <br>
+    {% endif %}
+    <div class="form-group form-outline w-25">
+        <label for="current_password">Aktuelles Passwort</label>
+        <input type="password" name="current_password" id="current_password" class="form-control"
+               placeholder="Aktuelles Passwort">
+    </div>
+    <br>
+    <button type="submit" class="btn btn-success">Submit</button>
+    <a href="./profil" class="btn btn-danger">Cancel</a>
+</form>
+    <br>
+{% endblock %}

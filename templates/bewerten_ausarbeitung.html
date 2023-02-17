@@ -1,0 +1,106 @@
+{% extends "vorlagen/main.html" %}
+<title>{% block title %}Vortrag bewerten{% endblock %}</title>
+
+{% block content %}
+<h1>Ihre Bewertung für die Ausarbeitung</h1>
+<form action="./ausarbeitung_bewerten_verarbeiten/{{ record_id }}" method="post">
+
+    <div>
+        <legend>Umfang</legend>
+        <input value="1" type="radio" id="umfang" name="umfang" required>
+        <label for="umfang">--</label>
+        
+        <input value="2" type="radio" id="umfang" name="umfang">
+        <label for="umfang">-</label>
+
+        <input value="3" type="radio" id="umfang" name="umfang">
+        <label for="umfang">0</label>
+
+        <input value="4" type="radio" id="umfang" name="umfang">
+        <label for="umfang">+</label>
+
+        <input value="5" type="radio" id="umfang" name="umfang">
+        <label for="umfang">++</label>
+    </div>
+    <br>
+    <div>
+        <legend>Referenzen</legend>
+        <input value="1" type="radio" id="referenz" name="referenz" required>
+        <label for="referenz">--</label>
+        
+        <input value="2" type="radio" id="referenz" name="referenz">
+        <label for="referenz">-</label>
+        
+        <input value="3" type="radio" id="referenz" name="referenz">
+        <label for="referenz">0</label>
+        
+        <input value="4" type="radio" id="referenz" name="referenz">
+        <label for="referenz">+</label>
+        
+        <input value="5" type="radio" id="referenz" name="referenz">
+        <label for="referenz">++</label>
+    </div>
+    <br>
+    <div>
+        <legend>Sprachliche Gestaltung</legend>
+        <input value="1" type="radio" id="sprachlich" name="sprachlich" required>
+        <label for="sprachlich">--</label>
+        
+        <input value="2" type="radio" id="sprachlich" name="sprachlich">
+        <label for="sprachlich">-</label>
+        
+        <input value="3" type="radio" id="sprachlich" name="sprachlich">
+        <label for="sprachlich">0</label>
+        
+        <input value="4" type="radio" id="sprachlich" name="sprachlich">
+        <label for="sprachlich">+</label>
+        
+        <input value="5" type="radio" id="sprachlich" name="sprachlich">
+        <label for="sprachlich">++</label>
+    </div>
+    <br>
+    <div>
+        <legend>Inhaltliche Aufbereitung</legend>
+        <input value="1 "type="radio" id="inhaltlich" name="inhaltlich" required>
+        <label for="inhaltlich">--</label>
+    
+        <input value="2" type="radio" id="inhaltlich" name="inhaltlich">
+        <label for="inhaltlich">-</label>
+    
+        <input value="3" type="radio" id="inhaltlich" name="inhaltlich">
+        <label for="inhaltlich">0</label>
+    
+        <input value="4" type="radio" id="inhaltlich" name="inhaltlich">
+        <label for="inhaltlich">+</label>
+    
+        <input value="5" type="radio" id="inhaltlich" name="inhaltlich">
+        <label for="inhaltlich">++</label>
+    </div>
+    <br>
+    <div>
+        <legend>Schwierigkeitsgrad</legend>
+        <input value="1" type="radio" id="schwierigkeit" name="schwierigkeit" required>
+        <label for="schwierigkeit">--</label>
+    
+        <input value="2" type="radio" id="schwierigkeit" name="schwierigkeit">
+        <label for="schwierigkeit">-</label>
+    
+        <input value="3" type="radio" id="schwierigkeit" name="schwierigkeit">
+        <label for="schwierigkeit">0</label>
+    
+        <input value="4" type="radio" id="schwierigkeit" name="schwierigkeit">
+        <label for="schwierigkeit">+</label>
+    
+        <input value="5" type="radio" id="schwierigkeit" name="schwierigkeit">
+        <label for="schwierigkeit">++</label>
+    </div>
+    <br>
+    <div>
+        <legend>Kommentar</legend>
+        <label for="kommentar"></label>
+        <textarea id="kommentar" name="kommentar" maxlength="255" rows="4" cols="50"></textarea> <!--TINYTEXT-->
+    </div>
+
+    <br><input class="btn btn-primary" type="submit" />
+</form>
+{% endblock %}
