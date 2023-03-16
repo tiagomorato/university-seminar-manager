@@ -33,6 +33,7 @@ def get_login_id():
 @app.route('/index')
 @app.route('/')
 def index():
+    get_login_id()
     return render_template("index.html")
 
 
