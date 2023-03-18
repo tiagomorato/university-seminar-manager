@@ -1,18 +1,7 @@
 import psycopg2
 import re
 from flask import Flask, render_template, request, session, redirect, url_for, flash, Markup
-
-from db_functions import db_add_user, db_get_student_by_mail, db_edit_student, \
-    db_get_bewertung, db_add_bewertung, db_get_student_matrikel_by_seminar, db_get_dozent_by_mail, \
-    db_get_all_dozenten, db_get_benotung_student, \
-    db_add_benotung_student, db_get_seminarthema_by_id, db_add_ausarbeitung_bewertung, \
-    db_get_ausarbeitung_bewertung, db_get_student_id_by_seminar_id, db_close_seminar, db_edit_dozent, \
-    db_edit_seminar_thema_belegen, db_edit_seminar_thema, \
-    db_add_seminar_thema, db_check_if_student_belegt, db_get_seminarthema_id_by_name, \
-    db_get_seminarthema_name_by_student_email, db_get_profil_alle_studierende, db_get_profil_einzelne_studierende, \
-    db_get_seminarthemen_seite, db_get_current_file, db_get_dozent_full_name_by_id, db_get_seminarthemen_ansicht, \
-    db_get_student_email_by_seminarthema_id, db_get_abschluss_name_by_id, db_get_studiengang_name_by_id, \
-    db_get_seminar_name_by_id
+from db_functions import *
 
 app = Flask(__name__)
 app.secret_key = "12345"
